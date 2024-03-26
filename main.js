@@ -1,30 +1,17 @@
-//   ------Projekt 12  v.01 Delete ----
-// const removeTask = (e) => {
-//   //   console.log(e.target.textContent);
-//   //   e.target.parentNode.remove();
-//   //   e.target.parentNode.style.textDecoration = 'line-through';
+//   ------Projekt 12  v.02 Search----
 
-//   const index = e.target.dataset.key;
-//   document.querySelector(`li[data-key="${index}"]`).style.textDecoration = 'line-through';
-//   e.target.remove();
-// };
+const input = document.querySelector('input');
+const ul = document.querySelector('ul');
+const liElements = document.querySelectorAll('li');
 
-// document.querySelectorAll('button[data-key]').forEach((item) => item.addEventListener('click', removeTask));
+const searchTask = (e) => {
+  const searchText = e.target.value.toLowerCase();
+  let tasks = [...liElements];
 
-//   ------Projekt 12  v.02 map forEach ----
+  tasks = tasks.filter((li) => li.textContent.toLowerCase().includes(searchText));
+  console.log(tasks);
+  ul.textContent = '';
+  tasks.forEach((li) => ul.appendChild(li));
+};
 
-// // Filter
-const arr = [34, 219, 109, 2093, 12, 10, 29];
-
-const oddNumbers = arr.filter((number) => number % 2);
-
-const evenNumber = arr.filter((number) => !(number % 2));
-
-const numbersBigerThen100 = arr.filter((number) => number > 100);
-
-// Map
-const people = arr.map((number) => number + 'osób');
-const double = arr.map((number) => number * 2);
-
-// forEach
-arr.forEach((number, index) => (arr[index] = number * 2));
+input.addEventListener('input', searchTask);
